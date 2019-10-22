@@ -2,7 +2,7 @@
 iab, RTB Project, OpenRTB Specification 2.5
 
 ## Example
-```
+```php
 $imp = new Imp();
 $imp->setId('1');
 
