@@ -34,3 +34,6 @@ $bidRequest
 
 $request = json_encode($bidRequest->toArray());
 ```
+
+### Install
+`composer require visavi/openrtb`
