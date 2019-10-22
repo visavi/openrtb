@@ -1,0 +1,33 @@
+{
+  "name": "visavi/openrtb",
+  "type": "library",
+  "description": "OpenRTB specification",
+  "keywords": ["openrtb"],
+  "license": "GPL-2.0",
+  "authors": [
+    {
+      "name": "Alexander Grigorev",
+      "email": "admin@visavi.net",
+      "homepage": "https://visavi.net"
+    }
+  ],
+  "require": {
+    "ext-json": "*",
+    "php": ">=7.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "8.3.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "OpenRtb\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "OpenRtb\\Tests\\": "tests/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
