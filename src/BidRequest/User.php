@@ -14,7 +14,7 @@ class User implements Arrayable
     use ToArray;
 
     /**
-     * Exchange-specific ID for the user. At least one of id or buyerid is recommended
+     * Exchange-specific ID for the user. At least one of id or buyeruid is recommended
      *
      * @recommended
      * @var string
@@ -22,12 +22,12 @@ class User implements Arrayable
     protected $id;
 
     /**
-     * Buyer-specific ID for the user as mapped by the exchange for the buyer. At least one of buyerid or id is recommended.
+     * Buyer-specific ID for the user as mapped by the exchange for the buyer. At least one of buyeruid or id is recommended.
      *
      * @recommended
      * @var string
      */
-    protected $buyerid;
+    protected $buyeruid;
 
     /**
      * Gender as "M" male, "F" female, "O" Other. (Null indicates unknown)
@@ -107,20 +107,20 @@ class User implements Arrayable
     /**
      * @return string
      */
-    public function getBuyerid()
+    public function getBuyeruid()
     {
-        return $this->buyerid;
+        return $this->buyeruid;
     }
 
     /**
-     * @param string $buyerid
+     * @param string $buyeruid
      * @return $this
      * @throws \OpenRtb\Tools\Exceptions\ExceptionInvalidValue
      */
-    public function setBuyerid($buyerid)
+    public function setBuyeruid($buyeruid)
     {
-        $this->validateString($buyerid);
-        $this->buyerid = $buyerid;
+        $this->validateString($buyeruid);
+        $this->buyeruid = $buyeruid;
         return $this;
     }
 

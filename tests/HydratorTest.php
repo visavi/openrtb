@@ -134,7 +134,7 @@ class HydratorTest extends TestCase
         $this->assertInstanceOf('OpenRtb\Tools\Classes\ArrayCollection', $object->getImp());
         $this->assertInstanceOf('OpenRtb\BidRequest\Imp', $object->getImp()->current());
         $this->assertEquals('1', $object->getImp()->current()->getId());
-//        $this->assertEquals('y4O57Y16t5p449R94e7VQKs35fg7T87F', $object->getUser()->getBuyerid());
+//        $this->assertEquals('y4O57Y16t5p449R94e7VQKs35fg7T87F', $object->getUser()->getBuyeruid());
     }
 
     public function testHydrateBidRequest()

@@ -64,7 +64,7 @@ $device->setUa('Mozilla/5.0 (Windows NT 6.2; Win64; x64; rv:69.0) Gecko/20100101
 
 $user = new User();
 $user->setId('test1')
-    ->setBuyerid('xxxxxxxxx');
+    ->setBuyeruid('xxxxxxxxx');
 
 $bidRequest = new BidRequest();
 $bidRequest
