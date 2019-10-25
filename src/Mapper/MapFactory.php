@@ -24,7 +24,7 @@ class MapFactory
         foreach ($mapSchema as $key => $value) {
             $tags = [];
             if (strpos($key, ':') !== false) {
-                list($key, $tags) = explode(':', $key);
+                [$key, $tags] = explode(':', $key);
                 $tags = self::normaliseTags($tags);
             }
             $map->add(new MapItem($key, $value, $tags));
@@ -82,7 +82,7 @@ class MapFactory
             if (strpos($tag, ' ') !== false) {
                 list($tag, $value) = explode(' ', $tag);
             }
-            $result[$tag] = isset($value) ? $value : true;
+            $result[$tag] = $value ?? true;
         }
         return $result;
     }

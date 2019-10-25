@@ -44,7 +44,7 @@ class Map implements Countable, IteratorAggregate
      */
     public function get($objectPath)
     {
-        return isset($this->map[$objectPath]) ? $this->map[$objectPath] : null;
+        return $this->map[$objectPath] ?? null;
     }
 
     /**
