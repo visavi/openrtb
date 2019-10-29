@@ -28,10 +28,21 @@ $video->setMimes([
     ->setApi([1,2])
     ->setPlacement(3);
 
+$deals = new Deal();
+$deals->setId('id')
+    ->setBidfloor(120)
+    ->setBidfloorcur('RUB')
+    ->setAt(3);
+
+$pmp = new Pmp();
+$pmp->setPrivate_auction(0)
+    ->addDeals($deals);
+
 $imp->setVideo($video)
     ->setBidfloor(100)
     ->setBidfloorcur('RUB')
-    ->setSecure(1);
+    ->setSecure(1)
+    ->setPmp($pmp);
 
 $site = new Site();
 $site->setId('1234')
@@ -78,6 +89,71 @@ $bidRequest
     ->setCur(['RUB']);
 
 $request = $bidRequest->getBidRequest();
+```
+#### Response
+```php
+$object = new BidResponse();
+
+foreach ($responses as $response) {
+    /** @var BidResponse $result */
+    $result = Hydrator::hydrate(json_decode($response, true), $object);
+
+    /** @var Seatbid $bid */
+    $seatBid = $result->getSeatbid()->first();
+
+    /** @var Bid $bid */
+    $bid = $seatBid->getBid()->first();
+
+    $nurls[] = $bid->getNurl();
+}
+
+// or
+$result = json_decode($response, true);
+$nurl = $result['seatbid'][0]['bid'][0]['nurl'] ?? null;
+```
+
+### Async request
+```php
+$bidders = [
+    'segmento' => 'https://bider1',
+    'weborama' => 'https://bider2',
+    'otm'      => 'https://bider3',
+];
+
+$promises = (function () use ($bidders) {
+    foreach ($bidders as $service => $bidder) {
+        $buyer   = $this->getBuyer($service);
+        $request = $this->buildRequest($buyer);
+
+        if (!$request) {
+            continue;
+        }
+
+        yield $this->client->requestAsync('POST', $bidder, ['body' => $request]);
+    }
+})();
+
+$responses = [];
+
+if (!$promises) {
+    return '';
+}
+
+$each = new EachPromise($promises, [
+    'concurrency' => 4,
+    'fulfilled' => static function (ResponseInterface $response) use (&$responses) {
+
+        $content = (string) $response->getBody();
+
+        if ($content && 200 === $response->getStatusCode()) {
+            $responses[] = $content;
+        }
+    },
+]);
+
+$each->promise()->wait();
+
+var_dump($responses);
 ```
 
 ## Install
