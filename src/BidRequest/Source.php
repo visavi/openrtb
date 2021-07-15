@@ -64,7 +64,7 @@ class Source implements Arrayable
      */
     public function setFd($fd)
     {
-        $this->validateIn($allimps, BitType::getAll());
+        $this->validateIn($fd, BitType::getAll());
         $this->fd = $fd;
 
         return $this;
