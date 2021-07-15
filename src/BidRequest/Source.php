@@ -45,6 +45,11 @@ class Source implements Arrayable
     protected $pchain;
 
     /**
+     * @var Ext
+     */
+    protected $ext;
+
+    /**
      * @return bool
      */
     public function getFd()
@@ -107,6 +112,21 @@ class Source implements Arrayable
         return $this;
     }
 
+    /**
+     * @return Ext
+     */
+    public function getExt()
+    {
+        return $this->ext;
+    }
 
-
+    /**
+     * @param Ext $ext
+     * @return $this
+     */
+    public function setExt(Ext $ext)
+    {
+        $this->ext = $ext;
+        return $this;
+    }
 }
