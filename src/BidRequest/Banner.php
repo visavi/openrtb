@@ -386,7 +386,8 @@ class Banner implements Arrayable
      */
     public function setPos($pos)
     {
-        $this->pos = $this->validateIn($pos, AdPosition::getAll());
+        $this->validateIn($pos, AdPosition::getAll());
+        $this->pos = $pos;
         return $this;
     }
 
